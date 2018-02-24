@@ -8,8 +8,8 @@
 // @include		/http[s]{0,1}://[a-z]{2}[0-9]{1,2}\.grepolis\.com/game*/
 // @require		http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js
 // @copyright	2018 Ideetjeshuis
-// @updateURL   https://www.ideetjeshuis.nl/Autobot/ROT.js
-// @downloadURL	https://www.ideetjeshuis.nl/Autobot/ROT.js
+// @updateURL   https://github.com/huizinga/ROT/blob/master/ROT.js
+// @downloadURL	https://github.com/huizinga/ROT/blob/master/ROT.js
 // ==/UserScript==
 
 var uw = unsafeWindow || window, $ = uw.jQuery || jQuery;
@@ -54,7 +54,7 @@ $(function () {
         }));
         return f;
     }
-
+    
     function AddBtn(a, b) {
         var d = b || "",
                 g = $("<div/>", {
@@ -72,35 +72,31 @@ $(function () {
 
     function CreateReport(a) {
         var b = a.getName();
-        if (0 < a.getJQElement().find($("#report_arrow")).length) {
+        if (0 < a.getJQElement().find($("#report_arrow")).length &&
+                0 == a.getJQElement().find($("#ROOD" + b)).length &&
+                (a.getJQElement().find($("#report_report div.game_list_footer")).append(AddBtn("ROOD", b).click(function () {
+
+                    var $tempInput = $("<textarea>");
+                    $("body").append($tempInput);
+                    $tempInput.val(text).select();
+                    try {
+                        var successful = document.execCommand('copy');
+                        var msg = successful ? 'successful' : 'unsuccessful';
+                        setTimeout(function () {
+                            HumanMessage.success("REPORT gekopieerd naar clipboard");
+                        }, 1);
+                        console.log('Copying text command was ' + msg);
+                    } catch (err) {
+                        setTimeout(function () {
+                            HumanMessage.error("Mislukt");
+                        }, 1);
+                        console.log('Oops, unable to copy');
+                    }
+                    $tempInput.remove();
+
+                })))) {
             switch (a.getJQElement().find($("div#report_arrow img")).attr("src").replace(/.*\/([a-z_]*)\.png.*/, "$1")) {
                 case "take_over":
-
-                    if (0 == a.getJQElement().find($("#ROOD" + b)).length &&
-                            (a.getJQElement().find($("#report_report div.game_list_footer")).append(AddBtn("ROOD", b).click(function () {
-
-                                var $tempInput = $("<textarea>");
-                                $("body").append($tempInput);
-                                $tempInput.val(text).select();
-                                try {
-                                    var successful = document.execCommand('copy');
-                                    var msg = successful ? 'successful' : 'unsuccessful';
-                                    setTimeout(function () {
-                                        HumanMessage.success("REPORT gekopieerd naar clipboard")
-                                    }, 1)
-                                    console.log('Copying text command was ' + msg);
-                                } catch (err) {
-                                    setTimeout(function () {
-                                        HumanMessage.error("Mislukt")
-                                    }, 1)
-                                    console.log('Oops, unable to copy');
-                                }
-                                $tempInput.remove();
-
-                            })))) {
-                    }
-
-
                     c = {};
                     c.sender = {};
                     c.receiver = {};
@@ -216,7 +212,7 @@ $(function () {
 
         ms = dt.getTime();
         return ms;
-    }
+    };
 
 });
 
