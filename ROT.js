@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name		ROT
 // @namespace	ROT
-// @version		0.15
+// @version		0.16
 // @author		Hans
 // @description Rood Opstand Tool
 // @include		http://de.grepolis.com/game*
