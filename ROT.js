@@ -116,23 +116,28 @@ $(function () {
                     c.god = aa.god();
                     c.time = Date.parseDate(a.getJQElement().find($("#report_date")).html());
 
-//                    c.rtrevinfo = MM.checkAndPublishRawModel("CommandsMenuBubble", {
-//                        id: Game.player_id
-//                    }).get("revolts").in_current_town;
                     c.rtcstime = "~" + readableUnixTimestamp(parseInt(CsTime(JSON.parse(atob(a.getJQElement().find($("#report_sending_town .gp_player_link")).attr("href").substr(1))).id, JSON.parse(atob(a.getJQElement().find($("#report_receiving_town .gp_town_link")).attr("href").substr(1))))), "no_offset");
-//                    c.rtrevolt = "";
-//                    try {
-//                        $.each(c.rtrevinfo.arising, function (e, a) {
-//                            var b = readableUnixTimestamp(a.finished_at, "player_timezone", {extended_date: !1, with_seconds: !1});
-//                            if(-1 < c.time.indexOf(b)) (c.rtrevolt = readableUnixTimestamp(a.started_at, "player_timezone", {extended_date: !0, with_seconds: !0}));
-//                        });
-//                      $.each(c.rtrevinfo.running, function (e, a) {
-//                            var b = readableUnixTimestamp(a.finished_at, "player_timezone", { extended_date: !1, with_seconds: !1});
-//                            if(-1 < c.time.indexOf(b)) (c.rtrevolt = readableUnixTimestamp(a.started_at, "player_timezone", {extended_date: !0, with_seconds: !0}));
-//                        });
-//                    } catch (e) {
-//                        c.rtrevolt = "";
-//                    }
+
+                     try {
+                        c.rtrevinfo = MM.checkAndPublishRawModel("CommandsMenuBubble", {
+                            id: Game.player_id
+                        }).get("revolts").in_current_town;
+                    } catch (e) {
+                        c.rtrevinfo = ""
+                    }                   
+                    c.rtrevolt = "";
+                    try {
+                        $.each(c.rtrevinfo.arising, function (e, a) {
+                            var b = readableUnixTimestamp(a.finished_at, "player_timezone", {extended_date: !1, with_seconds: !1});
+                            if(-1 < c.time.indexOf(b)) (c.rtrevolt = readableUnixTimestamp(a.started_at, "player_timezone", {extended_date: !0, with_seconds: !0}));
+                        });
+                      $.each(c.rtrevinfo.running, function (e, a) {
+                            var b = readableUnixTimestamp(a.finished_at, "player_timezone", { extended_date: !1, with_seconds: !1});
+                            if(-1 < c.time.indexOf(b)) (c.rtrevolt = readableUnixTimestamp(a.started_at, "player_timezone", {extended_date: !0, with_seconds: !0}));
+                        });
+                    } catch (e) {
+                        c.rtrevolt = "";
+                    }
 
                     t = new Date(c.time);
                     var t1 = t.getHours() + ":" + t.getMinutes() + ":" + t.getSeconds();
