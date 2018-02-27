@@ -8,6 +8,7 @@
 // @include		/http[s]{0,1}://[a-z]{2}[0-9]{1,2}\.grepolis\.com/game*/
 // @require		http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js
 // @copyright	2018 Ideetjeshuis
+// @grant       none
 // @updateURL   https://raw.githubusercontent.com/huizinga/ROT/master/ROT.js
 // @downloadURL	https://raw.githubusercontent.com/huizinga/ROT/master/ROT.js
 // ==/UserScript==
