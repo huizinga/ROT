@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name		ROT
 // @namespace    http://tampermonkey.net/
-// @version		0.16
+// @version		0.17
 // @author		Hans
 // @description Rood Opstand Tool
 // @include		http://de.grepolis.com/game*
@@ -120,6 +120,7 @@ $(function () {
                     c.rtcstime = "~" + readableUnixTimestamp(parseInt(CsTime(JSON.parse(atob(a.getJQElement().find($("#report_sending_town .gp_player_link")).attr("href").substr(1))).id, JSON.parse(atob(a.getJQElement().find($("#report_receiving_town .gp_town_link")).attr("href").substr(1))))), "no_offset");
 
                      try {
+                        MM.getModelByNameAndPlayerId("CommandsMenuBubble").forceUpdate();
                         c.rtrevinfo = MM.checkAndPublishRawModel("CommandsMenuBubble", {
                             id: Game.player_id
                         }).get("revolts").in_current_town;
