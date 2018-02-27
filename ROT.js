@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name		ROT
-// @namespace	ROT
+// @namespace    http://tampermonkey.net/
 // @version		0.16
 // @author		Hans
 // @description Rood Opstand Tool
