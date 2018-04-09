@@ -70,11 +70,14 @@ setTimeout(function(){
         return g;
     }
 
-    function CreateReport(a) {
-        var b = a.getName();
-        if (0 < a.getJQElement().find($("#report_arrow")).length &&
-                0 == a.getJQElement().find($("#ROOD" + b)).length &&
-                (a.getJQElement().find($("#report_report div.game_list_footer")).append(AddBtn("ROOD", b).click(function () {
+     function CreateReport(a) {
+      var b = a.getName();
+        if (0 < a.getJQElement().find($("#report_arrow")).length && JSON.parse(atob(a.getJQElement().find($("#report_receiving_town")).find($("li.town_owner a,.gp_player_link")).attr("href").substr(1)))['id'] == Game.player_id ) {
+            switch (a.getJQElement().find($("div#report_arrow img")).attr("src").replace(/.*\/([a-z_]*)\.png.*/, "$1")) {
+                case "take_over":
+
+                    if (0 == a.getJQElement().find($("#ROOD" + b)).length &&
+                            (a.getJQElement().find($("#report_report div.game_list_footer")).append(AddBtn("ROOD", b).click(function () {
 
                     var $tempInput = $("<textarea>");
                     $("body").append($tempInput);
@@ -94,10 +97,9 @@ setTimeout(function(){
                     }
                     $tempInput.remove();
 
-                })))) {
-            switch (a.getJQElement().find($("div#report_arrow img")).attr("src").replace(/.*\/([a-z_]*)\.png.*/, "$1")) {
-                case "take_over":
-                    c = {};
+					})))) {
+
+					c = {};
                     c.sender = {};
                     c.receiver = {};
                     c.sender.town = JSON.parse(atob(a.getJQElement().find($("#report_sending_town")).find($("li.town_name a,.gp_town_link")).attr("href").substr(1)));
@@ -175,10 +177,11 @@ setTimeout(function(){
 
                     console.log("take_over", c);
                     break;
-            }
-
+            
+			}
         }
-    }
+      }
+	}
 
     $(document).ajaxComplete(function (d,
             h, c) {
