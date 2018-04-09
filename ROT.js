@@ -108,8 +108,11 @@ setTimeout(function(){
                     c.sender.ally = a.getJQElement().find($("#report_sending_town")).find($("li.town_owner_ally a")).html().trim();
                     c.receiver.ally = a.getJQElement().find($("#report_receiving_town")).find($("li.town_owner_ally a")).html().trim();
                     c.hero = {};
+                    try {
                     c.hero.name = MM.checkAndPublishRawModel("Town", {id: c.receiver.town.id}).getHeroes()[0].getName();
                     c.hero.level = MM.checkAndPublishRawModel("Town", {id: c.receiver.town.id}).getHeroes()[0].getLevel();
+                    } catch (e) {
+                    }
                     var aa = ITowns.getTown(c.receiver.town.id);
                     c.wall = aa.buildings().getBuildingLevel("wall");
                     c.phalanx = aa.researches().get("phalanx");
