@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name		ROT
 // @namespace    http://tampermonkey.net/
-// @version		0.20
+// @version		0.21
 // @author		Hans
 // @description Rood Opstand Tool
 // @include		http://de.grepolis.com/game*
