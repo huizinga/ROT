@@ -1,12 +1,11 @@
 // ==UserScript==
 // @name		ROT
 // @namespace    http://tampermonkey.net/
-// @version		0.17
+// @version		0.20
 // @author		Hans
 // @description Rood Opstand Tool
 // @include		http://de.grepolis.com/game*
 // @include		/http[s]{0,1}://[a-z]{2}[0-9]{1,2}\.grepolis\.com/game*/
-
 // @copyright	2018 Ideetjeshuis
 // @grant       none
 // @updateURL   https://raw.githubusercontent.com/huizinga/ROT/master/ROT.js
