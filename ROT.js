@@ -6,15 +6,16 @@
 // @description Rood Opstand Tool
 // @include		http://de.grepolis.com/game*
 // @include		/http[s]{0,1}://[a-z]{2}[0-9]{1,2}\.grepolis\.com/game*/
+
 // @copyright	2018 Ideetjeshuis
 // @grant       none
 // @updateURL   https://raw.githubusercontent.com/huizinga/ROT/master/ROT.js
 // @downloadURL	https://raw.githubusercontent.com/huizinga/ROT/master/ROT.js
 // ==/UserScript==
 
-var uw = unsafeWindow || window, $ = uw.jQuery || jQuery;
 
-$(function () {
+setTimeout(function(){
+
 
     console.log('%c|= ROT-Tools is active =|', 'color: green; font-size: 1em; font-weight: bolder; ');
     var text = "";
@@ -54,7 +55,7 @@ $(function () {
         }));
         return f;
     }
-    
+
     function AddBtn(a, b) {
         var d = b || "",
                 g = $("<div/>", {
@@ -124,8 +125,8 @@ $(function () {
                             id: Game.player_id
                         }).get("revolts").in_current_town;
                     } catch (e) {
-                        c.rtrevinfo = ""
-                    }                   
+                        c.rtrevinfo = "";
+                    }
                     c.rtrevolt = "";
                     try {
                         $.each(c.rtrevinfo.arising, function (e, a) {
@@ -220,5 +221,5 @@ $(function () {
         return ms;
     };
 
-});
 
+}, 5000);
